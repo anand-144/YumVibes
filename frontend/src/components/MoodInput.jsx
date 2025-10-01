@@ -32,11 +32,12 @@ const MoodInput = ({ onSubmit }) => {
         <button
           onClick={handleSubmit}
           disabled={!mood.trim()}
-          className=" px-6 sm:px-9 py-3 sm:py-4 bg-gradient-to-r from-violet-500 to-fuchsia-500 text-gray-800 rounded-full hover:from-violet-600 hover:to-fuchsia-600 transition-all duration-300 hover:shadow-xl hover:shadow-fuchsia-400/40 disabled:opacity-80 disabled:cursor-not-allowed flex items-center justify-center space-x-2 font-bold text-md sm:text-xl hover:scale-105 active:scale-95"
+          className="px-6 sm:px-9 py-3 sm:py-4 bg-gradient-to-r from-violet-500 to-fuchsia-500 text-gray-800 rounded-full hover:from-violet-600 hover:to-fuchsia-600 transition-all duration-300 hover:shadow-xl hover:shadow-fuchsia-400/40 disabled:opacity-80 disabled:cursor-not-allowed flex items-center justify-center space-x-2 font-bold text-md sm:text-xl hover:scale-105 active:scale-95"
         >
           <span>Send</span>
-          <Send className="w-4 sm:w-5 h-4 sm:h-5" />
+          <span className="text-xl sm:text-2xl inline-block transform -scale-x-100">🍢</span>
         </button>
+
       </div>
     </div>
   );

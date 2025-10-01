@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { UtensilsCrossed, Menu, X, User } from 'lucide-react';
+import { Menu, X, User } from 'lucide-react';
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -55,8 +55,9 @@ const Navbar = () => {
               className="flex items-center space-x-2 focus:outline-none"
               onClick={() => setDropdownOpen(!dropdownOpen)}
             >
-              <User className="w-6 h-6" />
+              <span className="text-2xl sm:text-3xl inline-block">😎</span>
             </button>
+
 
             {dropdownOpen && (
               <div className="absolute right-0 mt-2 w-40 bg-white text-gray-800 rounded-lg shadow-lg overflow-hidden z-50">

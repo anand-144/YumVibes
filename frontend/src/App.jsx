@@ -1,27 +1,27 @@
-import React, { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
-import Home from './pages/Home';
-import About from './pages/About';   // new page
-import ContextProvider from './context/ContextProvider';
-import { Smile, Frown, Coffee, Heart, Sun, Moon, Cloud, Star, CakeSlice } from "lucide-react";
-import Login from './pages/Login';
-import Register from './pages/Register';
-import Favorites from './pages/Favorites';
+import React, { useState } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+import Home from "./pages/Home";
+import About from "./pages/About";
+import ContextProvider from "./context/ContextProvider";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import Favorites from "./pages/Favorites";
 
 function App() {
-  const icons = [
-    { Icon: Smile, color: "text-pink-600", top: "10%", left: "5%" },
-    { Icon: Frown, color: "text-blue-700", top: "25%", left: "80%" },
-    { Icon: Coffee, color: "text-amber-600", top: "60%", left: "15%" },
-    { Icon: Heart, color: "text-red-600", top: "75%", left: "70%" },
-    { Icon: Sun, color: "text-yellow-400", top: "30%", left: "40%" },
-    { Icon: Moon, color: "text-indigo-800", top: "85%", left: "30%" },
-    { Icon: Cloud, color: "text-gray-600", top: "55%", left: "90%" },
-    { Icon: Star, color: "text-violet-600", top: "5%", left: "60%" },
-    { Icon: CakeSlice, color: "text-pink-700", top: "50%", left: "60%" },
+  const emojis = [
+    { emoji: "😀", top: "12%", left: "8%" },
+    { emoji: "😢", top: "28%", left: "75%" },
+    { emoji: "☕", top: "60%", left: "12%" },
+    { emoji: "❤️", top: "78%", left: "68%" },
+    { emoji: "🌞", top: "35%", left: "42%" },
+    { emoji: "🌙", top: "85%", left: "25%" },
+    { emoji: "☁️", top: "52%", left: "90%" },
+    { emoji: "⭐", top: "8%", left: "58%" },
+    { emoji: "🎂", top: "48%", left: "60%" },
   ];
+
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   return (
@@ -29,17 +29,19 @@ function App() {
       <Router>
         <div className="relative flex flex-col min-h-screen bg-gradient-to-br from-violet-200 via-indigo-400 to-amber-200 overflow-hidden">
 
-          {/* floating mood icons */}
-          {icons.map(({ Icon, color, top, left }, i) => (
-            <Icon
+          {/* floating mood emojis */}
+          {emojis.map(({ emoji, top, left }, i) => (
+            <span
               key={i}
-              className={`absolute ${color} opacity-40 w-12 sm:w-16 h-12 sm:h-16 animate-float hidden sm:block`}
+              className="absolute opacity-50 text-3xl sm:text-5xl animate-float hidden sm:block"
               style={{
                 top,
                 left,
-                animationDelay: `${i * 0.5}s`
+                animationDelay: `${i * 0.5}s`,
               }}
-            />
+            >
+              {emoji}
+            </span>
           ))}
 
           <Navbar />
