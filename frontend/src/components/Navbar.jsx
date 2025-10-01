@@ -46,8 +46,8 @@ const Navbar = () => {
 
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center space-x-7">
-          <Link to="/" className="hover:text-amber-300 transition-colors font-semibold">Home</Link>
-          <Link to="/about" className="hover:text-amber-300 transition-colors font-semibold">About</Link>
+          <Link to="/" className="hover:text-amber-300 transition-colors font-semibold text-lg">Home</Link>
+          <Link to="/about" className="hover:text-amber-300 transition-colors font-semibold text-lg">About</Link>
 
           {/* Profile Dropdown */}
           <div ref={dropdownRef} className="relative">
