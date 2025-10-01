@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -6,6 +6,9 @@ import Home from './pages/Home';
 import About from './pages/About';   // new page
 import ContextProvider from './context/ContextProvider';
 import { Smile, Frown, Coffee, Heart, Sun, Moon, Cloud, Star, CakeSlice } from "lucide-react";
+import Login from './pages/Login';
+import Register from './pages/Register';
+import Favorites from './pages/Favorites';
 
 function App() {
   const icons = [
@@ -19,6 +22,7 @@ function App() {
     { Icon: Star, color: "text-violet-600", top: "5%", left: "60%" },
     { Icon: CakeSlice, color: "text-pink-700", top: "50%", left: "60%" },
   ];
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   return (
     <ContextProvider>
@@ -29,23 +33,26 @@ function App() {
           {icons.map(({ Icon, color, top, left }, i) => (
             <Icon
               key={i}
-              className={`absolute ${color} opacity-40 w-16 h-16 animate-float`}
+              className={`absolute ${color} opacity-40 w-12 sm:w-16 h-12 sm:h-16 animate-float hidden sm:block`}
               style={{
                 top,
                 left,
-                animationDelay: `${i * 0.5}s` // stagger movement
+                animationDelay: `${i * 0.5}s`
               }}
             />
           ))}
 
-
           <Navbar />
-          <main className="flex-1 container mx-auto px-4 py-14 relative z-10">
+          <main className="flex-1 container mx-auto px-4 sm:px-6 py-24 sm:py-28 relative z-10">
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/about" element={<About />} />
+              <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/favorites" element={<Favorites />} />
             </Routes>
           </main>
+
           <Footer />
         </div>
       </Router>
