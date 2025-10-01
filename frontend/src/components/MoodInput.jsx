@@ -1,31 +1,43 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
+import { Send } from 'lucide-react';
 
 const MoodInput = ({ onSubmit }) => {
-  const [mood, setMood] = useState("");
+  const [mood, setMood] = useState('');
 
   const handleSubmit = () => {
-    if (mood.trim() !== "") {
+    if (mood.trim() !== '') {
       onSubmit(mood);
-      setMood("");
+      setMood('');
+    }
+  };
+
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      handleSubmit();
     }
   };
 
   return (
-    <div>
-      <h2 className="text-xl font-semibold mb-2">Type Your Mood</h2>
-      <div className="flex justify-center gap-2">
+    <div className="space-y-6">
+      <h2 className="text-3xl font-bold text-gray-700 text-center">
+        Or describe your mood
+      </h2>
+      <div className="flex gap-4">
         <input
           type="text"
-          placeholder="Enter mood..."
+          placeholder="e.g., feeling adventurous, need comfort..."
           value={mood}
           onChange={(e) => setMood(e.target.value)}
-          className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400"
+          onKeyPress={handleKeyPress}
+          className="flex-1 px-7 py-4 bg-white border-2 border-violet-200 rounded-full focus:outline-none focus:border-fuchsia-400 focus:ring-4 focus:ring-fuchsia-100 transition-all text-gray-700 placeholder-gray-400 shadow-md text-lg"
         />
         <button
           onClick={handleSubmit}
-          className="px-4 py-2 bg-pink-500 text-white rounded-lg hover:bg-pink-600 transition"
+          disabled={!mood.trim()}
+          className="px-9 py-4 bg-gradient-to-r from-violet-500 to-fuchsia-500 text-white rounded-full hover:from-violet-600 hover:to-fuchsia-600 transition-all duration-300 hover:shadow-xl hover:shadow-fuchsia-400/40 disabled:opacity-50 disabled:cursor-not-allowed flex items-center space-x-2 font-semibold text-lg hover:scale-105 active:scale-95"
         >
-          Submit
+          <span>Send</span>
+          <Send className="w-5 h-5" />
         </button>
       </div>
     </div>

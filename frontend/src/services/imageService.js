@@ -2,18 +2,23 @@
 export async function getFoodImage(foodName) {
   try {
     const response = await fetch(
-      `https://api.unsplash.com/photos/random?query=${encodeURIComponent(
-        foodName
-      )}&client_id=${import.meta.env.VITE_UNSPLASH_ACCESS_KEY}`
+      `https://api.pexels.com/v1/search?query=${encodeURIComponent(foodName)}&per_page=1`,
+      {
+        headers: {
+          Authorization: import.meta.env.VITE_PEXELS_API_KEY,
+        },
+      }
     );
 
-    if (!response.ok) throw new Error("Unsplash fetch failed");
+    if (!response.ok) throw new Error("Pexels fetch failed");
 
     const data = await response.json();
-    return data.urls?.regular || null; // always fresh image
+    const imageUrl = data.photos?.[0]?.src?.medium || null;
+
+    // fallback if no image found
+    return imageUrl || "https://via.placeholder.com/600x400?text=Food+Image";
   } catch (err) {
-    console.error("Unsplash image fetch failed:", err);
-    // fallback placeholder
+    console.error("Pexels image fetch failed:", err);
     return "https://via.placeholder.com/600x400?text=Food+Image";
   }
 }
