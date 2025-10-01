@@ -1,21 +1,22 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Menu, X, User } from 'lucide-react';
+import { Context } from '../context/ContextProvider';
 
 const Navbar = () => {
+  const { user, logoutUser } = useContext(Context); 
   const [menuOpen, setMenuOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // simulate login state
   const dropdownRef = useRef(null);
   const navigate = useNavigate();
 
   const handleLoginLogout = () => {
-    if (isLoggedIn) {
-      setIsLoggedIn(false);
+    if (user) {
+      logoutUser();
       setDropdownOpen(false);
-      navigate("/"); // go to home after logout
+      navigate("/");
     } else {
-      navigate("/login"); // redirect to login page
+      navigate("/login");
       setDropdownOpen(false);
     }
   };
@@ -28,10 +29,13 @@ const Navbar = () => {
       }
     };
     document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
+
+  // ✅ Close dropdown when user state changes
+  useEffect(() => {
+    setDropdownOpen(false);
+  }, [user]);
 
   return (
     <nav className="bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white shadow-lg fixed w-full z-20">
@@ -58,10 +62,9 @@ const Navbar = () => {
               <span className="text-2xl sm:text-3xl inline-block">😎</span>
             </button>
 
-
             {dropdownOpen && (
               <div className="absolute right-0 mt-2 w-40 bg-white text-gray-800 rounded-lg shadow-lg overflow-hidden z-50">
-                {!isLoggedIn ? (
+                {!user ? (
                   <button
                     onClick={handleLoginLogout}
                     className="w-full text-left px-4 py-2 hover:bg-violet-100 transition-colors"
@@ -96,7 +99,7 @@ const Navbar = () => {
           </button>
 
           {/* Profile Dropdown Mobile */}
-          <div ref={dropdownRef} className="relative">
+          <div className="relative">
             <button
               className="flex items-center"
               onClick={() => setDropdownOpen(!dropdownOpen)}
@@ -106,7 +109,7 @@ const Navbar = () => {
 
             {dropdownOpen && (
               <div className="absolute right-0 mt-2 w-36 bg-white text-gray-800 rounded-lg shadow-lg overflow-hidden z-50">
-                {!isLoggedIn ? (
+                {!user ? (
                   <button
                     onClick={handleLoginLogout}
                     className="w-full text-left px-4 py-2 hover:bg-violet-100 transition-colors"

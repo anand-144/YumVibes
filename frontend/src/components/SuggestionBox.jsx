@@ -1,13 +1,33 @@
-import React, { useContext, useEffect } from 'react';
-import { Context } from '../context/ContextProvider';
-import { Loader2, Sparkles } from 'lucide-react';
+import React, { useContext, useEffect, useState } from "react";
+import { Context } from "../context/ContextProvider";
+import { Loader2, Sparkles, Heart } from "lucide-react";
 
 const SuggestionBox = ({ mood }) => {
-  const { onSent, response, loading } = useContext(Context);
+  const { onSent, response, loading, user, addFavorite, favorites } = useContext(Context);
+  const [addedToFav, setAddedToFav] = useState(false);
 
   useEffect(() => {
-    if (mood) onSent(mood);
+    if (mood) {
+      onSent(mood);
+      setAddedToFav(false);
+    }
   }, [mood]);
+
+  useEffect(() => {
+    if (response) {
+      const exists = favorites.find(f => f.food === response.food);
+      setAddedToFav(!!exists);
+    }
+  }, [response, favorites]);
+
+  const handleAddToFavorites = () => {
+    if (!user) {
+      alert("Please login to add favorites.");
+      return;
+    }
+    addFavorite({ food: response.food, image: response.image });
+    setAddedToFav(true);
+  };
 
   return (
     <div className="max-w-2xl mx-auto px-2 sm:px-0">
@@ -62,6 +82,20 @@ const SuggestionBox = ({ mood }) => {
                 </h3>
                 <p className="text-gray-700 leading-relaxed text-sm sm:text-lg">{response.funStory}</p>
               </div>
+
+              {/* Add to Favorites Button */}
+              <button
+                onClick={handleAddToFavorites}
+                disabled={addedToFav}
+                className={`w-full py-3 rounded-lg mt-4 flex justify-center items-center space-x-2 font-semibold ${
+                  addedToFav
+                    ? "bg-gray-400 cursor-not-allowed text-white"
+                    : "bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-700 hover:to-fuchsia-700 text-white"
+                }`}
+              >
+                <Heart className="w-5 h-5" />
+                <span>{addedToFav ? "Added to Favorites" : "Add to Favorites"}</span>
+              </button>
             </div>
           )}
         </div>

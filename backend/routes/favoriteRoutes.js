@@ -8,6 +8,6 @@ router.use(protect); // protect all routes
 
 router.get('/', getFavorites);
 router.post('/', addFavorite);
-router.delete('/', removeFavorite);
+router.post('/remove', protect, removeFavorite);
 
 export default router;

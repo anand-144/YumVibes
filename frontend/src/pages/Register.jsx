@@ -1,18 +1,33 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Eye, EyeOff } from 'lucide-react';
+import axios from 'axios';
 
 const Register = () => {
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  const handleRegister = () => {
-    if (email && password) {
+  const handleRegister = async () => {
+    if (!name || !email || !password) return alert("All fields are required");
+    
+    try {
+      setLoading(true);
+      const { data } = await axios.post('http://localhost:5000/api/auth/register', {
+        name, email, password
+      });
+
+      localStorage.setItem('token', data.token);
+      localStorage.setItem('user', JSON.stringify(data.user));
       alert("Registered successfully!");
-      navigate('/login');
+      navigate('/');
+    } catch (error) {
+      alert(error.response?.data?.message || "Registration failed");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -56,9 +71,10 @@ const Register = () => {
 
         <button
           onClick={handleRegister}
-          className="w-full bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white py-3 rounded-lg hover:from-violet-700 hover:to-fuchsia-700 transition-all"
+          disabled={loading}
+          className="w-full bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white py-3 rounded-lg hover:from-violet-700 hover:to-fuchsia-700 transition-all disabled:opacity-50"
         >
-          Register
+          {loading ? 'Registering...' : 'Register'}
         </button>
 
         <p className="text-center mt-4 text-gray-500">
