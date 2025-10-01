@@ -5,7 +5,7 @@ import { UtensilsCrossed, Menu, X, User } from 'lucide-react';
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(true); // simulate login state
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // simulate login state
   const dropdownRef = useRef(null);
   const navigate = useNavigate();
 
@@ -35,13 +35,13 @@ const Navbar = () => {
 
   return (
     <nav className="bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white shadow-lg fixed w-full z-20">
-      <div className="container mx-auto flex justify-between items-center px-4 sm:px-6 py-4">
+      <div className="container mx-auto flex justify-between items-center px-4 sm:px-6 py-2">
         {/* Logo */}
         <Link to="/" className="flex items-center space-x-3">
           <div className="bg-white p-2.5 rounded-xl shadow-lg">
-            <UtensilsCrossed className="w-6 h-6 text-fuchsia-500" />
+            <p className='text-3xl font-extrabold'>😋</p>
           </div>
-          <h1 className="text-xl sm:text-2xl font-bold tracking-tight">MoodFood</h1>
+          <h1 className="text-xl sm:text-2xl font-bold tracking-tight">YumVibe</h1>
         </Link>
 
         {/* Desktop Menu */}
