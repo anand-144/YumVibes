@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Eye, EyeOff } from 'lucide-react';
 import axios from 'axios';
+import {toast} from 'react-toastify'
 
 const Register = () => {
   const [email, setEmail] = useState('');
@@ -12,7 +13,7 @@ const Register = () => {
   const navigate = useNavigate();
 
   const handleRegister = async () => {
-    if (!name || !email || !password) return alert("All fields are required");
+    if (!name || !email || !password) return toast.erroring("All fields are required");
     
     try {
       setLoading(true);
@@ -22,10 +23,10 @@ const Register = () => {
 
       localStorage.setItem('token', data.token);
       localStorage.setItem('user', JSON.stringify(data.user));
-      alert("Registered successfully!");
-      navigate('/');
+      toast.success("Registered successfully!");
+      navigate('/login');
     } catch (error) {
-      alert(error.response?.data?.message || "Registration failed");
+      toast.error(error.response?.data?.message || "Registration failed");
     } finally {
       setLoading(false);
     }

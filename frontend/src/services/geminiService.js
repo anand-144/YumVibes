@@ -72,7 +72,7 @@ export async function runChat(prompt) {
 
     return { error: false, ...parsed };
   } catch (err) {
-    console.warn("AI JSON parse failed:", err);
+    console.error("AI JSON parse failed:", err);
     return {
       error: true,
       message: "Oops! Something went wrong while generating your food suggestion. Please try again.",

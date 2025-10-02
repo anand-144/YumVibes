@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Eye, EyeOff } from 'lucide-react';
 import axios from 'axios';
+import {toast} from 'react-toastify'
 
 const Login = ({ setIsLoggedIn }) => {
   const [email, setEmail] = useState('');
@@ -11,7 +12,7 @@ const Login = ({ setIsLoggedIn }) => {
   const navigate = useNavigate();
 
   const handleLogin = async () => {
-    if (!email || !password) return alert("Both fields are required");
+    if (!email || !password) return toast.error("Both fields are required");
     
     try {
       setLoading(true);
@@ -24,7 +25,7 @@ const Login = ({ setIsLoggedIn }) => {
       setIsLoggedIn(true);
       navigate('/');
     } catch (error) {
-      alert(error.response?.data?.message || "Login failed");
+      toast.error(error.response?.data?.message || "Login failed");
     } finally {
       setLoading(false);
     }

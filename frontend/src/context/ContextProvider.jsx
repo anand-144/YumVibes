@@ -2,6 +2,7 @@ import React, { createContext, useState, useEffect } from "react";
 import { runChat } from "../services/geminiService";
 import { getFoodImage } from "../services/imageService.js";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 export const Context = createContext();
 
@@ -84,7 +85,7 @@ const addFavorite = async (meal) => {
     fetchFavorites();
   } catch (err) {
     console.error(err);
-    alert(err.response?.data?.message || "Failed to add favorite");
+    toast.error(err.response?.data?.message || "Failed to add favorite");
   }
 };
 
@@ -92,17 +93,30 @@ const removeFavorite = async (meal) => {
   if (!user || !token) return;
 
   try {
+    const normalizedMeal = meal.trim().toLowerCase();
+
+    // Optimistic UI update: remove from local state first
+    setFavorites(prev => prev.filter(fav => fav.food.trim().toLowerCase() !== normalizedMeal));
+
+    // Send request to backend
     await axios.post(
       "http://localhost:5000/api/favorites/remove",
-      { food: meal.food },
+      { food: meal },
       { headers: { Authorization: `Bearer ${token}` } }
     );
-    fetchFavorites();
+
+    // Optionally, you can re-fetch favorites to make sure backend is synced
+    // await fetchFavorites();
+
   } catch (err) {
     console.error(err);
-    alert(err.response?.data?.message || "Failed to remove favorite");
+    toast.error(err.response?.data?.message || "Failed to remove favorite");
+    // Re-fetch favorites in case of error to sync state
+    fetchFavorites();
   }
 };
+
+
 
 
 

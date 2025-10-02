@@ -29,13 +29,24 @@ export const addFavorite = async (req, res) => {
   }
 };
 
+
 // Remove a meal from favorites
 export const removeFavorite = async (req, res) => {
   try {
     const { food } = req.body;
-    req.user.favorites = req.user.favorites.filter(fav => fav.food !== food);
+    if (!food) return res.status(400).json({ message: "Food is required" });
+
+    const normalizedFood = food.trim().toLowerCase();
+
+    // Filter out matching food (case-insensitive & trim)
+    const newFavorites = req.user.favorites.filter(
+      fav => fav.food.trim().toLowerCase() !== normalizedFood
+    );
+
+    req.user.favorites = newFavorites;
     await req.user.save();
-    res.status(200).json(req.user.favorites);
+
+    res.status(200).json({ favorites: req.user.favorites, message: "Removed successfully" });
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: "Server error" });

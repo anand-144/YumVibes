@@ -2,6 +2,8 @@ import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../context/ContextProvider";
 import { Loader2, Sparkles, Heart } from "lucide-react";
 
+import { toast } from "react-toastify";
+
 const SuggestionBox = ({ mood }) => {
   const { onSent, response, loading, user, addFavorite, favorites } = useContext(Context);
   const [addedToFav, setAddedToFav] = useState(false);
@@ -22,7 +24,7 @@ const SuggestionBox = ({ mood }) => {
 
   const handleAddToFavorites = () => {
     if (!user) {
-      alert("Please login to add favorites.");
+      toast.info("Please login to add favorites.");
       return;
     }
     addFavorite({ food: response.food, image: response.image });
