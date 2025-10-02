@@ -8,6 +8,8 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Favorites from "./pages/Favorites";
 import Landing from "./pages/Landing";
+import NotFound from "./pages/NotFound";
+
 import { Context } from "./context/ContextProvider"; // ✅ use context object
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -52,6 +54,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/favorites" element={user ? <Favorites /> : <Landing />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </main>
 
