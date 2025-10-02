@@ -3,7 +3,7 @@ import { Heart } from 'lucide-react';
 
 const Footer = () => {
   return (
-    <footer className="bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white py-8 mt-auto">
+    <footer className="bg-gradient-to-r from-violet-600 via-indigo-300/50 to-fuchsia-600 text-blue-950 py-8 mt-auto">
       <div className="container mx-auto text-center">
         <div className="flex flex-col sm:flex-row items-center justify-center space-y-2 sm:space-y-0 sm:space-x-2 mb-2">
           <span className="text-lg font-semibold">Made with</span>

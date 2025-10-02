@@ -4,8 +4,10 @@ import { Menu, X, User } from 'lucide-react';
 import { Context } from '../context/ContextProvider';
 import { toast } from 'react-toastify';
 
+import { LogIn, LogOut, Crown } from 'lucide-react';
+
 const Navbar = () => {
-  const { user, logoutUser } = useContext(Context); 
+  const { user, logoutUser } = useContext(Context);
   const [menuOpen, setMenuOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
@@ -40,7 +42,7 @@ const Navbar = () => {
   }, [user]);
 
   return (
-    <nav className="bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white shadow-lg fixed w-full z-20">
+    <nav className="bg-gradient-to-r from-violet-600 via-indigo-300/50 to-fuchsia-600 text-white shadow-lg fixed w-full z-20">
       <div className="container mx-auto flex justify-between items-center px-4 sm:px-6 py-2">
         {/* Logo */}
         <Link to="/" className="flex items-center space-x-3">
@@ -69,23 +71,24 @@ const Navbar = () => {
                 {!user ? (
                   <button
                     onClick={handleLoginLogout}
-                    className="w-full text-left px-4 py-2 hover:bg-violet-100 transition-colors cursor-pointer"
+                    className="w-full flex items-center justify-between px-4 py-2 hover:bg-violet-100 transition-colors cursor-pointer"
                   >
-                    Login
+                    <p className="text-gray-700">Login <span className='text-2xl'>🫰</span></p>
                   </button>
+
                 ) : (
                   <>
                     <Link
                       to="/favorites"
                       className="block px-4 py-2 hover:bg-violet-100 transition-colors"
                     >
-                      Favorite
+                      Favorite <span className='text-2xl'>🌟</span>
                     </Link>
                     <button
                       onClick={handleLoginLogout}
                       className="w-full text-left px-4 py-2 hover:bg-violet-100 transition-colors"
                     >
-                      Logout
+                      Logout <span className='text-2xl'>👋</span>
                     </button>
                   </>
                 )}

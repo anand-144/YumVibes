@@ -50,7 +50,7 @@ const Landing = () => {
           onClick={() => navigate("/login")}
           className="px-8 py-4 bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white text-xl rounded-xl shadow-lg hover:from-violet-700 hover:to-fuchsia-700 transition-all cursor-pointer"
         >
-          Login
+        ❤️ Login ❤️
         </button>
       </div>
     </div>
