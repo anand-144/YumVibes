@@ -58,7 +58,7 @@ const Navbar = () => {
           {/* Profile Dropdown */}
           <div ref={dropdownRef} className="relative">
             <button
-              className="flex items-center space-x-2 focus:outline-none"
+              className="flex items-center space-x-2 focus:outline-none cursor-pointer"
               onClick={() => setDropdownOpen(!dropdownOpen)}
             >
               <span className="text-2xl sm:text-3xl inline-block">😎</span>
@@ -69,7 +69,7 @@ const Navbar = () => {
                 {!user ? (
                   <button
                     onClick={handleLoginLogout}
-                    className="w-full text-left px-4 py-2 hover:bg-violet-100 transition-colors"
+                    className="w-full text-left px-4 py-2 hover:bg-violet-100 transition-colors cursor-pointer"
                   >
                     Login
                   </button>

@@ -64,7 +64,7 @@ const Register = () => {
           <button
             type="button"
             onClick={() => setShowPassword(!showPassword)}
-            className="absolute right-3 top-3 text-gray-500"
+            className="absolute right-3 top-3 text-gray-500 cursor-pointer"
           >
             {showPassword ? <EyeOff /> : <Eye />}
           </button>

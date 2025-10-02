@@ -59,7 +59,7 @@ const Login = () => {
           <button
             type="button"
             onClick={() => setShowPassword(!showPassword)}
-            className="absolute right-3 top-3 text-gray-500"
+            className="absolute right-3 top-3 text-gray-500 cursor-pointer"
           >
             {showPassword ? <EyeOff /> : <Eye />}
           </button>
@@ -68,7 +68,7 @@ const Login = () => {
         <button
           onClick={handleLogin}
           disabled={loading}
-          className="w-full bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white py-3 rounded-lg hover:from-violet-700 hover:to-fuchsia-700 transition-all disabled:opacity-50"
+          className="w-full bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white py-3 rounded-lg hover:from-violet-700 hover:to-fuchsia-700 transition-all disabled:opacity-50 cursor-pointer"
         >
           {loading ? 'Logging in...' : 'Login'}
         </button>

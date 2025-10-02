@@ -31,7 +31,7 @@ const Favorites = () => {
               <h3 className="text-xl font-bold">{fav.food}</h3>
               <button
                 onClick={() => removeFavorite(fav.food)}
-                className="bg-red-500 text-white px-3 py-1 rounded-lg hover:bg-red-600 transition-colors"
+                className="bg-red-500 text-white px-3 py-1 rounded-lg hover:bg-red-600 transition-colors cursor-pointer"
               >
                 Remove
               </button>
