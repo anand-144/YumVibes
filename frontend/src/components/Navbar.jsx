@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Menu, X, User } from 'lucide-react';
 import { Context } from '../context/ContextProvider';
+import { toast } from 'react-toastify';
 
 const Navbar = () => {
   const { user, logoutUser } = useContext(Context); 
@@ -13,6 +14,7 @@ const Navbar = () => {
   const handleLoginLogout = () => {
     if (user) {
       logoutUser();
+      toast.success("Logged out successfully 👋");
       setDropdownOpen(false);
       navigate("/");
     } else {

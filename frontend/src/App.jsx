@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -8,8 +8,6 @@ import ContextProvider from "./context/ContextProvider";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Favorites from "./pages/Favorites";
-
-// react-toastify
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -25,8 +23,6 @@ function App() {
     { emoji: "⭐", top: "8%", left: "58%" },
     { emoji: "🎂", top: "48%", left: "60%" },
   ];
-
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   return (
     <ContextProvider>
@@ -53,7 +49,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/about" element={<About />} />
-              <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
+              <Route path="/login" element={<Login />} /> {/* ✅ removed setIsLoggedIn */}
               <Route path="/register" element={<Register />} />
               <Route path="/favorites" element={<Favorites />} />
             </Routes>
@@ -61,18 +57,8 @@ function App() {
 
           <Footer />
 
-          {/* Toastify container for showing notifications */}
-          <ToastContainer
-            position="top-right"
-            autoClose={3000}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-            theme="colored"
-          />
+          {/* Toast notifications */}
+          <ToastContainer position="top-right" autoClose={3000} theme="colored" />
         </div>
       </Router>
     </ContextProvider>

@@ -13,7 +13,7 @@ const Register = () => {
   const navigate = useNavigate();
 
   const handleRegister = async () => {
-    if (!name || !email || !password) return toast.erroring("All fields are required");
+    if (!name || !email || !password) return toast.error("All fields are required");
     
     try {
       setLoading(true);

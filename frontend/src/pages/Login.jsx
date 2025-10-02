@@ -1,28 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Eye, EyeOff } from 'lucide-react';
 import axios from 'axios';
-import {toast} from 'react-toastify'
+import { toast } from 'react-toastify';
+import { Context } from '../context/ContextProvider';  // ✅ import context
 
-const Login = ({ setIsLoggedIn }) => {
+const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
+  const { loginUser } = useContext(Context); // ✅ get loginUser from context
+
   const handleLogin = async () => {
     if (!email || !password) return toast.error("Both fields are required");
-    
+
     try {
       setLoading(true);
       const { data } = await axios.post('http://localhost:5000/api/auth/login', {
         email, password
       });
 
-      localStorage.setItem('token', data.token);
-      localStorage.setItem('user', JSON.stringify(data.user));
-      setIsLoggedIn(true);
+      // ✅ Use context to update state + localStorage
+      loginUser(data.user, data.token);
+
+      toast.success("Login successful 🎉");
       navigate('/');
     } catch (error) {
       toast.error(error.response?.data?.message || "Login failed");
