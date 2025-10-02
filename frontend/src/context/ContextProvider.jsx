@@ -6,6 +6,8 @@ import { toast } from "react-toastify";
 
 export const Context = createContext();
 
+const API_BASE = import.meta.env.VITE_API_BASE_URL;
+
 export const ContextProvider = ({ children }) => {
   const [response, setResponse] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -64,7 +66,7 @@ export const ContextProvider = ({ children }) => {
     try {
       const t = overrideToken || token;
       if (!t) return;
-      const res = await axios.get("http://localhost:5000/api/favorites", {
+      const res = await axios.get(`${API_BASE}/api/favorites`, {
         headers: { Authorization: `Bearer ${t}` },
       });
       setFavorites(res.data);
@@ -73,52 +75,48 @@ export const ContextProvider = ({ children }) => {
     }
   };
 
-const addFavorite = async (meal) => {
-  if (!user || !token) return;
+  const addFavorite = async (meal) => {
+    if (!user || !token) return;
 
-  try {
-    await axios.post(
-      "http://localhost:5000/api/favorites",
-      { food: meal.food, image: meal.image },
-      { headers: { Authorization: `Bearer ${token}` } }
-    );
-    fetchFavorites();
-  } catch (err) {
-    console.error(err);
-    toast.error(err.response?.data?.message || "Failed to add favorite");
-  }
-};
+    try {
+      await axios.post(
+        `${API_BASE}/api/favorites`,
+        { food: meal.food, image: meal.image },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      fetchFavorites();
+    } catch (err) {
+      console.error(err);
+      toast.error(err.response?.data?.message || "Failed to add favorite");
+    }
+  };
 
-const removeFavorite = async (meal) => {
-  if (!user || !token) return;
+  const removeFavorite = async (meal) => {
+    if (!user || !token) return;
 
-  try {
-    const normalizedMeal = meal.trim().toLowerCase();
+    try {
+      const normalizedMeal = meal.trim().toLowerCase();
 
-    // Optimistic UI update: remove from local state first
-    setFavorites(prev => prev.filter(fav => fav.food.trim().toLowerCase() !== normalizedMeal));
+      // Optimistic UI update: remove from local state first
+      setFavorites((prev) =>
+        prev.filter((fav) => fav.food.trim().toLowerCase() !== normalizedMeal)
+      );
 
-    // Send request to backend
-    await axios.post(
-      "http://localhost:5000/api/favorites/remove",
-      { food: meal },
-      { headers: { Authorization: `Bearer ${token}` } }
-    );
+      // Send request to backend
+      await axios.post(
+        `${API_BASE}/api/favorites/remove`,
+        { food: meal },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
 
-    // Optionally, you can re-fetch favorites to make sure backend is synced
-    // await fetchFavorites();
-
-  } catch (err) {
-    console.error(err);
-    toast.error(err.response?.data?.message || "Failed to remove favorite");
-    // Re-fetch favorites in case of error to sync state
-    fetchFavorites();
-  }
-};
-
-
-
-
+      // Optionally, re-fetch favorites
+      // await fetchFavorites();
+    } catch (err) {
+      console.error(err);
+      toast.error(err.response?.data?.message || "Failed to remove favorite");
+      fetchFavorites(); // re-sync in case of error
+    }
+  };
 
   return (
     <Context.Provider

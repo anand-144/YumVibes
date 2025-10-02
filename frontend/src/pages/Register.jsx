@@ -11,12 +11,14 @@ const Register = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
+  const API_BASE = import.meta.env.VITE_API_BASE_URL;
+
   const handleRegister = async () => {
     if (!name || !email || !password) return toast.error("All fields are required");
 
     try {
       setLoading(true);
-      const { data } = await axios.post('http://localhost:5000/api/auth/register', {
+      const { data } = await axios.post(`${API_BASE}/api/auth/register`, {
         name, email, password
       });
 
