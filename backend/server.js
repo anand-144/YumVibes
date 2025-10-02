@@ -12,7 +12,7 @@ const app = express();
 
 
 app.use(cors({
-  origin: ['http://localhost:5173'],
+  origin: ['http://localhost:5173' , 'https://yum-vibes-r8e6.vercel.app'],
   credentials: true,
 }));
 app.use(express.json());
