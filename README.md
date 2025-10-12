@@ -1,10 +1,10 @@
 ## 🖼️ Demo / Screenshot
+![App Demo Screenshot](https://i.ibb.co/XrCWKhcK/Screenshot-2025-10-06-133558.png)
 
 ## Visit
 https://yum-vibes-r8e6.vercel.app/
 
 <div align="center">
-  <img src="https://i.ibb.co/XrCWKhcK/Screenshot-2025-10-06-133558.png" alt="App Demo Screenshot" width="100%" height="100%"/>
   <h1>🍱 YumVibes</h1>
   <h3>AI-Powered Mood-Based Food Recommender & Recipe Generator</h3>
   <p>“Your Mood, Your Meal — Let AI Cook Up the Perfect Dish!”</p>
