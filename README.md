@@ -4,7 +4,7 @@
 https://yum-vibes-r8e6.vercel.app/
 
 <div align="center">
-  <img src="https://ibb.co/d09DSQWD/Screenshot-2025-10-06-133558.png" alt="App Demo Screenshot" width="100%"/>
+    <img src="https://i.ibb.co/d09DSQWD/Screenshot-2025-10-12-114505.png" alt="YumVibes Banner"/>
   <h1>🍱 YumVibes</h1>
   <h3>AI-Powered Mood-Based Food Recommender & Recipe Generator</h3>
   <p>“Your Mood, Your Meal — Let AI Cook Up the Perfect Dish!”</p>
