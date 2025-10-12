@@ -1,5 +1,5 @@
 ## 🖼️ Demo / Screenshot
-![App Demo Screenshot](https://i.ibb.co/XrCWKhcK/Screenshot-2025-10-06-133558.png)
+![App Demo Screenshot](https://ibb.co/d09DSQWD/Screenshot-2025-10-06-133558.png)
 
 ## Visit
 https://yum-vibes-r8e6.vercel.app/
