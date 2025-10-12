@@ -1,5 +1,9 @@
 ## 🖼️ Demo / Screenshot
-![YumVibes Banner](https://i.ibb.co/d09DSQWD/Screenshot-2025-10-06-133533.png)
+  <img src="https://i.ibb.co/d09DSQWD/Screenshot-2025-10-06-133533.png" 
+       alt="YumVibes Banner" 
+       width="800" 
+       height="450" 
+       style="object-fit: contain;" />
 
 ## Visit
 https://yum-vibes-r8e6.vercel.app/
