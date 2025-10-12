@@ -1,6 +1,6 @@
 ## 🖼️ Demo / Screenshot
-  <img src="https://i.ibb.co/d09DSQWD/Screenshot-2025-10-06-133533.png" 
-       alt="YumVibes Banner" 
+   <img src="https://i.ibb.co/XrCWKhcK/Screenshot-2025-10-06-133558.png" 
+       alt="App Demo Screenshot" 
        width="800" 
        height="450" 
        style="object-fit: contain;" />
