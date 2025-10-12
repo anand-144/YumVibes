@@ -1,10 +1,3 @@
-## 🖼️ Demo / Screenshot
-   <img src="https://ibb.co/k2TjB1tR/Screenshot-2025-10-06-133558.png" 
-       alt="App Demo Screenshot" 
-       width="800" 
-       height="450" 
-       style="object-fit: contain;" />
-
 ## Visit
 https://yum-vibes-r8e6.vercel.app/
 
