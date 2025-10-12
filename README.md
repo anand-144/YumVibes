@@ -1,5 +1,5 @@
 ## 🖼️ Demo / Screenshot
-   <img src="https://i.ibb.co/XrCWKhcK/Screenshot-2025-10-06-133558.png" 
+   <img src="https://ibb.co/k2TjB1tR/Screenshot-2025-10-06-133558.png" 
        alt="App Demo Screenshot" 
        width="800" 
        height="450" 
