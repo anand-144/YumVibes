@@ -1,6 +1,9 @@
 ## Visit
 https://yum-vibes-r8e6.vercel.app/
 
+## ScreenShot
+(https://i.ibb.co/nN1Ss4jY/Screenshot-2025-10-10-003639.png)
+
 <div align="center">
   <h1>🍱 YumVibes</h1>
   <h3>AI-Powered Mood-Based Food Recommender & Recipe Generator</h3>
