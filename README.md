@@ -1,7 +1,7 @@
 ## Visit
 https://yum-vibes-r8e6.vercel.app/
 
-![Screenshot](https://ibb.co/jCYQ2jp)
+![Screenshot](https://i.postimg.cc/Wznwy79D/yum-vibes-r8e6-vercel-app-2.png)
 
 <div align="center">
   <h1>🍱 YumVibes</h1>
